@@ -4,23 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- METADATOS PARA VISTA PREVIA (OPEN GRAPH) -->
-    <!-- Reemplaza [ID_DE_IMAGEN] con el ID de tu foto de Google Drive -->
-    <title>Invitación: Nuestra Boda | Alison & Oscar</title>
-    <meta name="description" content="¡Nos casamos! Te invitamos a celebrar con nosotros este día tan especial el 19 de septiembre de 2026.">
-    <meta property="og:title" content="Nuestra Boda | Alison & Oscar">
-    <meta property="og:description" content="¡Nos lanzamos al ruedo! Acompáñanos a celebrar nuestra unión.">
-    <meta property="og:image" content="https://lh3.googleusercontent.com/d/1TO7Fqtq7uphP_IZYaBLRTzZi-w6S5fSh"> <!-- Enlace directo a la imagen de previsualización -->
+    <!-- METADATOS PARA WHATSAPP Y REDES SOCIALES (OPEN GRAPH) -->
+    <title>Nuestra Boda | Alison & Oscar</title>
+    <meta name="description" content="Te invitamos a celebrar nuestra boda el próximo 19 de septiembre de 2026.">
+    
+    <!-- Facebook / WhatsApp / LinkedIn -->
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:url" content="https://oskr165.github.io/InvitacionBoda/"> 
+    <meta property="og:title" content="Nuestra Boda | Alison & Oscar">
+    <meta property="og:description" content="¡Nos casamos! Acompáñanos en este día tan especial.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/oskr165/InvitacionBoda/refs/heads/main/NuestraBoda.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Nuestra Boda | Alison & Oscar">
+    <meta property="twitter:description" content="Te invitamos a celebrar nuestra boda el 19 de septiembre de 2026.">
+    <meta property="twitter:image" content="https://raw.githubusercontent.com/oskr165/InvitacionBoda/refs/heads/main/NuestraBoda.png">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <!-- Iconos (FontAwesome) -->
+    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Animaciones (AOS) -->
+    <!-- Animaciones -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
@@ -35,285 +44,271 @@
             --terra: #c26e56;
             --olive: #6c765d;
             --bg-color: #FAF9F6;
-            --forest-deep: #1c3021;
-            --forest-mid: #2f5b41;
-            --rust: #7b3f1e;
-            --burnt-orange: #be5d2c;
-            --muted-earth: #9e8572;
         }
 
         body { background-color: var(--bg-color); color: #4a4a4a; overflow-x: hidden; }
-        .btn-olive { background-color: var(--olive); color: white; transition: all 0.3s ease; }
+        .btn-olive { background-color: var(--olive); color: white; transition: all 0.3s ease; border-radius: 9999px; }
         .btn-olive:hover { background-color: var(--copper); transform: translateY(-2px); }
         .parallax { background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
-        .music-btn { position: fixed; bottom: 20px; right: 20px; z-index: 50; background-color: var(--gold); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-        .music-playing { animation: spin 4s linear infinite; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
+        
+        .music-btn { 
+            position: fixed; bottom: 24px; right: 24px; z-index: 50; 
+            background-color: var(--gold); color: white; width: 48px; height: 48px; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15); cursor: pointer;
+        }
+        .music-playing { animation: spin 8s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        
         .divider-icon { color: var(--terra); font-size: 1.5rem; margin: 1rem 0; }
-        .color-circle { width: 35px; height: 35px; border-radius: 50%; display: inline-block; margin: 0 5px; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .color-circle { width: 36px; height: 36px; border-radius: 50%; display: inline-block; margin: 0 6px; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body class="font-sans antialiased">
 
+    <!-- Audio y Botón -->
     <button id="musicToggle" class="music-btn" onclick="toggleMusic()">
-        <i class="fas fa-music"></i>
+        <i id="musicIcon" class="fas fa-music"></i>
     </button>
-    <audio id="bgMusic" loop preload="auto"></audio>
+    <audio id="bgMusic" loop src="https://media.vocaroo.com/mp3/15Jc3oIdO9sB"></audio>
 
-    <header id="header-bg" class="relative h-screen flex items-center justify-center text-center text-white parallax" 
-            style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
-        <div class="z-10 px-4" data-aos="fade-up" data-aos-duration="1500">
-            <p class="text-xl md:text-2xl tracking-widest uppercase mb-4 text-gray-100">¡Nos casamos!</p>
-            <p class="text-lg md:text-xl tracking-wide uppercase mb-8 opacity-90">Después de mucho pensarlo (unos cinco segundos), <br>decidimos casarnos. ¡Ven a celebrarlo con nosotros! </p>
-            <h1 class="font-handwriting text-6xl md:text-8xl mb-2 text-[#ccaa7a] drop-shadow-lg" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Alison & Oscar</h1>
-            <div class="w-24 h-1 bg-[#ccaa7a] mx-auto my-6"></div>
-            <p class="font-serif text-2xl md:text-3xl italic text-white">19 de Septiembre, 2026</p>
-            <div class="mt-12 animate-bounce text-[#ccaa7a]">
+    <!-- Portada -->
+    <header class="relative h-screen flex items-center justify-center text-center text-white parallax" 
+            style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://lh3.googleusercontent.com/d/1TO7Fqtq7uphP_IZYaBLRTzZi-w6S5fSh');">
+        <div class="px-4 space-y-6" data-aos="fade-up" data-aos-duration="1500">
+            <p class="uppercase tracking-[0.3em] text-sm md:text-lg">¡Nos casamos!</p>
+            <p class="text-lg md:text-xl opacity-90 max-w-xl mx-auto italic">
+                Después de mucho pensarlo (unos cinco segundos), decidimos casarnos. ¡Ven a celebrarlo con nosotros!
+            </p>
+            <h1 class="font-handwriting text-7xl md:text-9xl text-[#ccaa7a] drop-shadow-2xl">Alison & Oscar</h1>
+            <div class="w-24 h-px bg-[#ccaa7a] mx-auto opacity-50 my-6"></div>
+            <p class="font-serif text-2xl md:text-3xl italic tracking-wide">19 de Septiembre, 2026</p>
+            <div class="pt-12 animate-bounce opacity-70">
                 <i class="fas fa-chevron-down text-3xl"></i>
             </div>
         </div>
     </header>
 
-    <section class="py-16 px-6 text-center max-w-3xl mx-auto" data-aos="fade-up">
-        <i class="fas fa-quote-left text-3xl text-gold mb-4"></i>
-        <p class="font-serif text-xl md:text-2xl text-gray-600 leading-relaxed">
+    <!-- Frase -->
+    <section class="py-24 px-6 text-center max-w-3xl mx-auto" data-aos="fade-up">
+        <i class="fas fa-quote-left text-3xl text-gold mb-6 opacity-50"></i>
+        <p class="font-serif text-xl md:text-2xl leading-relaxed text-gray-600 italic">
             "Hay sentimientos que nacen sin palabras, pero con el tiempo encuentran su propio significado."
         </p>
-        <p class="mt-4 text-copper font-semibold">- Un 'sí' para toda la vida</p>
+        <p class="text-[#ba6931] font-semibold tracking-wider uppercase text-sm mt-6">- Un 'sí' para toda la vida -</p>
         <div class="divider-icon"><i class="fas fa-heart"></i></div>
     </section>
 
-    <section class="py-12" style="background-color: #bcb5a3;">
-        <div class="container mx-auto px-4 text-center" data-aos="zoom-in">
-            <h2 class="font-serif text-3xl md:text-4xl mb-8 text-white">Falta poco para el gran día</h2>
+    <!-- Cuenta Regresiva -->
+    <section class="py-16 bg-[#bcb5a3] text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="font-serif text-3xl md:text-4xl mb-12">Falta poco para el gran día</h2>
             <div id="countdown" class="flex flex-wrap justify-center gap-4 md:gap-8">
-                <div class="bg-white p-4 rounded-lg shadow-xl w-24 h-24 flex flex-col justify-center items-center">
-                    <span id="days" class="text-3xl font-bold text-copper">00</span>
-                    <span class="text-xs uppercase tracking-wide text-gray-500">Días</span>
+                <div class="bg-white p-4 rounded-2xl shadow-xl w-24 h-24 flex flex-col justify-center items-center">
+                    <span id="days" class="text-3xl font-bold text-[#ba6931]">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Días</span>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-xl w-24 h-24 flex flex-col justify-center items-center">
-                    <span id="hours" class="text-3xl font-bold text-copper">00</span>
-                    <span class="text-xs uppercase tracking-wide text-gray-500">Horas</span>
+                <div class="bg-white p-4 rounded-2xl shadow-xl w-24 h-24 flex flex-col justify-center items-center">
+                    <span id="hours" class="text-3xl font-bold text-[#ba6931]">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Horas</span>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-xl w-24 h-24 flex flex-col justify-center items-center">
-                    <span id="minutes" class="text-3xl font-bold text-copper">00</span>
-                    <span class="text-xs uppercase tracking-wide text-gray-500">Min</span>
+                <div class="bg-white p-4 rounded-2xl shadow-xl w-24 h-24 flex flex-col justify-center items-center">
+                    <span id="minutes" class="text-3xl font-bold text-[#ba6931]">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Min</span>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-xl w-24 h-24 flex flex-col justify-center items-center">
-                    <span id="seconds" class="text-3xl font-bold text-copper">00</span>
-                    <span class="text-xs uppercase tracking-wide text-gray-500">Seg</span>
+                <div class="bg-white p-4 rounded-2xl shadow-xl w-24 h-24 flex flex-col justify-center items-center">
+                    <span id="seconds" class="text-3xl font-bold text-[#ba6931]">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Seg</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 container mx-auto px-4 text-center">
-        <h2 class="font-handwriting text-5xl text-olive mb-12" data-aos="fade-up">Dónde & Cuándo</h2>
-        <div class="max-w-3xl mx-auto bg-white border border-gray-100 p-10 rounded-2xl shadow-xl transform transition duration-300" data-aos="fade-up">
-            <div class="flex justify-center gap-6 mb-8 text-gold">
-                <i class="fas fa-church text-4xl"></i>
-                <div class="w-px h-10 bg-gray-200"></div>
-                <i class="fas fa-glass-cheers text-4xl"></i>
+    <!-- Dónde & Cuándo -->
+    <section class="py-24 px-4 max-w-5xl mx-auto">
+        <h2 class="font-handwriting text-center text-5xl md:text-6xl text-[#6c765d] mb-16" data-aos="fade-up">Dónde & Cuándo</h2>
+        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 p-10 md:p-16 text-center space-y-8" data-aos="zoom-in">
+            <div class="flex justify-center gap-6 text-[#ccaa7a]">
+                <i class="fas fa-church text-5xl"></i>
+                <div class="w-px h-12 bg-gray-200"></div>
+                <i class="fas fa- champagne-glasses text-5xl text-[#ccaa7a]"></i>
+                <i class="fas fa-glass-cheers text-5xl"></i>
             </div>
-            <h3 class="font-serif text-3xl font-bold mb-6 text-olive">Ceremonia y Recepción</h3>
-            <div class="space-y-6 text-gray-600">
-                <div>
-                    <p class="text-copper font-bold uppercase tracking-widest mb-1">Horarios</p>
-                    <p class="text-lg">Ceremonia Religiosa: <span class="font-semibold text-olive">3:30 PM</span></p>
-                    <p class="text-lg">Recepción y Fiesta: <span class="font-semibold text-olive">5:30 PM</span></p>
+            
+            <div class="space-y-4">
+                <h3 class="font-serif text-3xl font-bold text-[#6c765d]">Ceremonia y Recepción</h3>
+                <div class="space-y-2">
+                    <p class="text-[#ba6931] font-bold uppercase tracking-widest text-xs">Horarios</p>
+                    <p class="text-lg">Ceremonia Religiosa: <span class="font-bold text-[#6c765d]">3:30 PM</span></p>
+                    <p class="text-lg">Recepción y Fiesta: <span class="font-bold text-[#6c765d]">5:30 PM</span></p>
                 </div>
-                <div class="pt-4">
-                    <p class="text-copper font-bold uppercase tracking-widest mb-1">Lugar</p>
-                    <p class="text-xl font-serif text-olive italic">Hotel Pringamosa</p>
+                <div class="pt-4 space-y-2">
+                    <p class="text-[#ba6931] font-bold uppercase tracking-widest text-xs">Lugar</p>
+                    <p class="text-xl font-serif italic text-[#6c765d]">Hotel Pringamosa</p>
                     <p class="text-gray-500">Cl. 9 #3-2, Vélez, Santander</p>
                 </div>
-                <div class="pt-8">
-                    <a href="https://maps.app.goo.gl/45swpbQeEimX3Jhc9" target="_blank" class="inline-flex items-center btn-olive px-10 py-3 rounded-full text-lg font-semibold shadow-md">
-                        <i class="fas fa-map-marker-alt mr-3"></i> Cómo llegar
-                    </a>
-                </div>
             </div>
+
+            <a href="https://maps.app.goo.gl/45swpbQeEimX3Jhc9" target="_blank" class="inline-flex items-center gap-3 btn-olive px-10 py-4 font-bold shadow-xl">
+                <i class="fas fa-map-marker-alt"></i> Cómo llegar
+            </a>
         </div>
     </section>
 
-    <section class="py-16 bg-gray-50 text-center px-4" data-aos="fade-up">
-        <div class="max-w-2xl mx-auto">
-            <div class="flex justify-center items-end gap-8 mb-6 text-olive">
+    <!-- Código de Vestimenta -->
+    <section class="py-24 bg-gray-50 text-center px-4" data-aos="fade-up">
+        <div class="max-w-2xl mx-auto space-y-8">
+            <div class="flex justify-center items-end gap-12 text-[#6c765d]">
                 <div class="flex flex-col items-center">
-                    <svg width="60" height="80" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-olive mb-2">
-                        <path d="M30 10C35 10 40 14 42 18L48 25C49 26 49 28 48 29L45 32C44 33 42 33 41 32L38 28V35C38 35 45 50 48 65C50 72 52 78 52 78H8C8 78 10 72 12 65C15 50 22 35 22 35V28L19 32C18 33 16 33 15 32L12 29C11 28 11 26 12 25L18 18C20 14 25 10 30 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M22 35H38" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M25 10L30 5L35 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <svg width="60" height="80" viewBox="0 0 60 80" fill="none" class="mb-3">
+                        <path d="M30 10C35 10 40 14 42 18L48 25C49 26 49 28 48 29L45 32C44 33 42 33 41 32L38 28V35C38 35 45 50 48 65C50 72 52 78 52 78H8C8 78 10 72 12 65C15 50 22 35 22 35V28L19 32C18 33 16 33 15 32L12 29C11 28 11 26 12 25L18 18C20 14 25 10 30 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        <path d="M22 35H38" stroke="currentColor" stroke-width="2" />
+                        <path d="M25 10L30 5L35 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                     </svg>
-                    <span class="text-copper font-serif italic text-sm">Ellas</span>
+                    <span class="font-serif italic text-sm text-[#ba6931]">Ellas</span>
                 </div>
                 <div class="flex flex-col items-center">
-                    <svg width="60" height="80" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-olive mb-2">
-                        <path d="M30 15L45 20V45L50 50V75H10V50L15 45V20L30 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M30 15V45" stroke="currentColor" stroke-width="2"/>
-                        <path d="M30 45L45 20" stroke="currentColor" stroke-width="2"/>
-                        <path d="M30 45L15 20" stroke="currentColor" stroke-width="2"/>
-                        <path d="M25 15L35 15L30 20L25 15Z" fill="currentColor"/>
-                        <path d="M22 15L25 18L22 21" stroke="currentColor" stroke-width="2"/>
-                        <path d="M38 15L35 18L38 21" stroke="currentColor" stroke-width="2"/>
+                    <svg width="60" height="80" viewBox="0 0 60 80" fill="none" class="mb-3">
+                        <path d="M30 15L45 20V45L50 50V75H10V50L15 45V20L30 15Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                        <path d="M30 15V45" stroke="currentColor" stroke-width="2" />
+                        <path d="M30 45L45 20" stroke="currentColor" stroke-width="2" />
+                        <path d="M30 45L15 20" stroke="currentColor" stroke-width="2" />
+                        <path d="M25 15L35 15L30 20L25 15Z" fill="currentColor" />
                     </svg>
-                    <span class="text-copper font-serif italic text-sm">Ellos</span>
+                    <span class="font-serif italic text-sm text-[#ba6931]">Ellos</span>
                 </div>
             </div>
-            <h2 class="font-serif text-3xl mb-2 text-olive">Código de Vestimenta</h2>
-            <p class="text-xl font-semibold text-copper mb-4">Formal / Elegante</p>
-            <div class="mb-6">
-                <p class="text-xs uppercase tracking-widest text-gray-400 mb-3 font-semibold">Paleta sugerida</p>
-                <div class="flex justify-center items-center">
-                    <div class="color-circle" style="background-color: #1c3021;"></div>
-                    <div class="color-circle" style="background-color: #2f5b41;"></div>
-                    <div class="color-circle" style="background-color: #7b3f1e;"></div>
-                    <div class="color-circle" style="background-color: #be5d2c;"></div>
-                    <div class="color-circle" style="background-color: #9e8572;"></div>
+            
+            <div class="space-y-4">
+                <h2 class="font-serif text-4xl text-[#6c765d]">Código de Vestimenta</h2>
+                <p class="text-xl font-bold text-[#ba6931] tracking-widest uppercase">Formal / Elegante</p>
+                <div class="py-6">
+                    <p class="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-4 font-bold">Paleta sugerida</p>
+                    <div class="flex justify-center gap-3">
+                        <div class="color-circle" style="background-color: #1c3021;"></div>
+                        <div class="color-circle" style="background-color: #2f5b41;"></div>
+                        <div class="color-circle" style="background-color: #7b3f1e;"></div>
+                        <div class="color-circle" style="background-color: #be5d2c;"></div>
+                        <div class="color-circle" style="background-color: #9e8572;"></div>
+                    </div>
+                </div>
+                <p class="text-gray-500 max-w-sm mx-auto leading-relaxed">
+                    Vestido largo o de coctel & Traje y corbata
+                    <span class="block italic text-sm mt-2">(Reservamos el color blanco para la novia)</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Historia -->
+    <section class="py-24 px-4 max-w-6xl mx-auto text-center">
+        <h2 class="font-handwriting text-5xl md:text-6xl text-[#6c765d] mb-16" data-aos="fade-up">Nuestra Historia</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="aspect-[4/5] rounded-3xl overflow-hidden border-8 border-[#bcb5a3] shadow-2xl transform rotate-1 hover:rotate-0 transition duration-500" data-aos="fade-right">
+                <img src="https://lh3.googleusercontent.com/d/1GzS5o58rlBFoAPaCn7hMIJmMynbQzrKi" class="w-full h-full object-cover" alt="Nosotros 1">
+            </div>
+            <div class="aspect-[4/5] rounded-3xl overflow-hidden border-8 border-[#ccaa7a] shadow-2xl transform md:-translate-y-8 -rotate-2 hover:rotate-0 transition duration-500" data-aos="fade-up">
+                <img src="https://lh3.googleusercontent.com/d/1BOzD8DdNPlbf1156l1mY2vh8RxosQ7sd" class="w-full h-full object-cover" alt="Nosotros 2">
+            </div>
+            <div class="aspect-[4/5] rounded-3xl overflow-hidden border-8 border-[#bcb5a3] shadow-2xl transform rotate-2 hover:rotate-0 transition duration-500" data-aos="fade-left">
+                <img src="https://lh3.googleusercontent.com/d/10re2oxPqc7cNi-_CXT84gXaiUExZrJTF" class="w-full h-full object-cover" alt="Nosotros 3">
+            </div>
+        </div>
+    </section>
+
+    <!-- Regalos -->
+    <section class="py-24 px-4 bg-white border-t border-b border-gray-50 text-center" data-aos="fade-up">
+        <div class="max-w-xl mx-auto space-y-10">
+            <div class="w-20 h-20 bg-[#FAF9F6] border border-[#ccaa7a] rounded-full flex items-center justify-center mx-auto text-[#ccaa7a]">
+                <i class="fas fa-envelope-open-text text-3xl"></i>
+            </div>
+            <div class="space-y-6">
+                <h2 class="font-serif text-4xl text-[#6c765d]">Regalos</h2>
+                <p class="text-gray-500 text-lg leading-relaxed italic">
+                    "Nuestro mejor regalo es tu presencia. Si deseas tener un detalle con nosotros, hemos dispuesto una lluvia de sobres."
+                </p>
+                <div class="relative p-10 bg-white border-2 border-[#ccaa7a] rounded-[2rem] shadow-xl inline-block group hover:scale-105 transition-transform duration-500">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-white px-4">
+                        <i class="fas fa-heart text-[#c26e56]"></i>
+                    </div>
+                    <p class="font-serif text-3xl text-[#6c765d] font-bold mb-3 tracking-tight">Lluvia de Sobres</p>
+                    <p class="text-gray-400 font-medium">Habrá un buzón especial en la recepción</p>
                 </div>
             </div>
-            <p class="text-gray-600">
-                Vestido largo o de coctel & Traje y corbata<br>
-                <span class="text-sm italic text-gray-500 mt-2 block">(Reservamos el color blanco para la novia)</span>
-            </p>
         </div>
     </section>
 
-    <section class="py-20 px-4">
-        <h2 class="text-center font-handwriting text-5xl text-olive mb-12">Nuestra Historia</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl mx-auto">
-            <div class="h-64 md:h-80 overflow-hidden rounded-lg shadow-lg border-4 border-[#bcb5a3]" data-aos="zoom-in">
-                <img id="photo-1" src="" alt="Pareja 1" class="w-full h-full object-cover transform hover:scale-110 transition duration-500">
-            </div>
-            <div class="h-64 md:h-80 overflow-hidden rounded-lg shadow-lg md:-mt-8 border-4 border-[#ccaa7a]" data-aos="zoom-in" data-aos-delay="100">
-                <img id="photo-2" src="" alt="Pareja 2" class="w-full h-full object-cover transform hover:scale-110 transition duration-500">
-            </div>
-            <div class="h-64 md:h-80 overflow-hidden rounded-lg shadow-lg border-4 border-[#bcb5a3]" data-aos="zoom-in" data-aos-delay="200">
-                <img id="photo-3" src="" alt="Pareja 3" class="w-full h-full object-cover transform hover:scale-110 transition duration-500">
+    <!-- Confirmación -->
+    <section class="relative py-32 text-white text-center parallax" 
+             style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://lh3.googleusercontent.com/d/1C5u1dF9DgMt-cLPXTwdp9AzXYALEJIpk');">
+        <div class="max-w-2xl mx-auto px-4 space-y-10" data-aos="zoom-in">
+            <h2 class="font-handwriting text-6xl text-[#ccaa7a]">Confirmación de Asistencia</h2>
+            <div class="space-y-6">
+                <p class="text-lg md:text-xl font-light text-gray-200">
+                    🤍 Nos encantaría compartir este momento contigo. 
+                    <br />Confírmanos tu asistencia <strong class="text-[#ccaa7a] font-bold">antes del 03 de agosto.</strong>
+                    <br />Queremos asegurarnos de tener un sitio especial para ti.
+                </p>
+                <button onclick="handleConfirm()" class="bg-[#6c765d] hover:bg-[#ba6931] text-white font-bold py-5 px-12 rounded-full shadow-2xl flex items-center justify-center mx-auto gap-4 text-xl transition-all hover:scale-105 active:scale-95">
+                    <i class="fab fa-whatsapp text-2xl"></i>
+                    Confirmar por WhatsApp
+                </button>
             </div>
         </div>
     </section>
 
-    <section id="rsvp-bg" class="py-20 bg-gray-900 text-white text-center px-4 relative parallax" 
-             style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
-        <div class="max-w-2xl mx-auto" data-aos="fade-up">
-            <h2 class="font-handwriting text-5xl mb-6 text-[#ccaa7a]">Confirmación de Asistencia</h2>
-            <p class="text-lg mb-8 text-gray-300">
-                🤍 Nos encantaría compartir este momento contigo. <br>¿Puedes venir? Confírmanos tu asistencia  <strong class="text-[#ccaa7a]">antes del 03 de agosto.</strong> <br>Queremos asegurarnos de tener un sitio especial para ti
-            </p>
-            <button onclick="confirmWhatsApp()" class="btn-olive font-bold py-4 px-8 rounded-full shadow-lg flex items-center justify-center mx-auto gap-3 text-lg">
-                <i class="fab fa-whatsapp text-3xl"></i>
-                Confirmar por WhatsApp
-            </button>
-        </div>
-    </section>
-
-    <footer class="py-8 text-center text-white text-sm" style="background-color: #6c765d;">
-        <p class="font-serif italic mb-2">Con amor, Alison & Oscar</p>
-        <p>&copy; 2026 Nuestra Boda. Diseñado para celebrar el amor.</p>
+    <footer class="py-12 bg-[#6c765d] text-center text-white/60 text-sm">
+        <p class="font-serif italic mb-2 text-white/90">Con amor, Alison & Oscar</p>
+        <p class="tracking-widest uppercase text-[10px] font-bold">© 2026 Nuestra Boda • Hecho con amor</p>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ once: true, offset: 100 });
 
-        const googleDriveLinks = {
-            musica: "https://voca.ro/15Jc3oIdO9sB",
-            portada: "https://drive.google.com/file/d/1TO7Fqtq7uphP_IZYaBLRTzZi-w6S5fSh/view?usp=sharing", 
-            fondoConfirmacion: "https://drive.google.com/file/d/1C5u1dF9DgMt-cLPXTwdp9AzXYALEJIpk/view?usp=sharing", 
-            galeria1: "https://drive.google.com/file/d/1GzS5o58rlBFoAPaCn7hMIJmMynbQzrKi/view?usp=sharing",
-            galeria2: "https://drive.google.com/file/d/1BOzD8DdNPlbf1156l1mY2vh8RxosQ7sd/view?usp=sharing",
-            galeria3: "https://drive.google.com/file/d/10re2oxPqc7cNi-_CXT84gXaiUExZrJTF/view?usp=sharing"
-        };
-
-        const weddingDate = new Date(2026, 8, 19, 15, 30, 0).getTime(); 
+        const weddingDate = new Date(2026, 8, 19, 15, 30, 0).getTime();
         const whatsappNumber = "573216605990";
 
-        function setDriveContent() {
-            function getDirectLink(url, type) {
-                if (!url) return null;
-                if (url.includes('voca.ro')) {
-                    const id = url.split('/').pop();
-                    return `https://media.vocaroo.com/mp3/${id}`;
-                }
-                const idMatch = url.match(/[-\w]{25,}/);
-                if (!idMatch) return url;
-                const id = idMatch[0];
-                if (type === 'image') return `https://lh3.googleusercontent.com/d/${id}`;
-                if (type === 'audio') return `https://docs.google.com/uc?export=download&id=${id}`;
-                return url;
-            }
-
-            if(googleDriveLinks.portada) {
-                const headerBg = document.getElementById('header-bg');
-                const directLink = getDirectLink(googleDriveLinks.portada, 'image');
-                headerBg.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('${directLink}')`;
-            }
-            if(googleDriveLinks.fondoConfirmacion) {
-                const rsvpBg = document.getElementById('rsvp-bg');
-                const directLink = getDirectLink(googleDriveLinks.fondoConfirmacion, 'image');
-                rsvpBg.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('${directLink}')`;
-            }
-            if(googleDriveLinks.galeria1) document.getElementById('photo-1').src = getDirectLink(googleDriveLinks.galeria1, 'image');
-            if(googleDriveLinks.galeria2) document.getElementById('photo-2').src = getDirectLink(googleDriveLinks.galeria2, 'image');
-            if(googleDriveLinks.galeria3) document.getElementById('photo-3').src = getDirectLink(googleDriveLinks.galeria3, 'image');
-            if(googleDriveLinks.musica) {
-                const audio = document.getElementById('bgMusic');
-                const musicUrl = getDirectLink(googleDriveLinks.musica, 'audio');
-                audio.src = musicUrl;
-            }
-        }
-
-        setDriveContent();
-
-        const timer = setInterval(function() {
+        // Lógica Cuenta Regresiva
+        const timer = setInterval(() => {
             const now = new Date().getTime();
-            const distance = weddingDate - now;
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const diff = weddingDate - now;
 
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-
-            if (distance < 0) {
+            if (diff > 0) {
+                document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+            } else {
                 clearInterval(timer);
-                document.getElementById("countdown").innerHTML = "<div class='text-2xl text-yellow-600 font-bold'>¡Es hoy!</div>";
+                document.getElementById('countdown').innerHTML = "<p class='text-2xl font-bold'>¡Es hoy!</p>";
             }
         }, 1000);
 
-        function confirmWhatsApp() {
-            const message = "Hola, quiero confirmar mi asistencia a la boda de Alison y Oscar. Mi nombre es: ";
-            const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
-        }
-
-        const audio = document.getElementById("bgMusic");
-        const musicBtn = document.getElementById("musicToggle");
+        // Música
         let isPlaying = false;
-
-        audio.addEventListener('error', function(e) {
-            console.error("Audio error:", e);
-        });
+        const audio = document.getElementById('bgMusic');
+        const icon = document.getElementById('musicIcon');
 
         function toggleMusic() {
-            if(!audio.src || audio.src === window.location.href) return;
             if (isPlaying) {
                 audio.pause();
-                musicBtn.innerHTML = '<i class="fas fa-music"></i>';
-                musicBtn.classList.remove("music-playing");
-                isPlaying = false;
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-music');
+                document.getElementById('musicToggle').classList.remove('music-playing');
             } else {
-                audio.play().then(_ => {
-                    musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                    musicBtn.classList.add("music-playing");
-                    isPlaying = true;
-                }).catch(e => console.log("Play blocked"));
+                audio.play();
+                icon.classList.remove('fa-music');
+                icon.classList.add('fa-pause');
+                document.getElementById('musicToggle').classList.add('music-playing');
             }
+            isPlaying = !isPlaying;
+        }
+
+        function handleConfirm() {
+            const message = "Hola, quiero confirmar mi asistencia a la boda de Alison y Oscar. Mi nombre es: ";
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
         }
     </script>
 </body>
