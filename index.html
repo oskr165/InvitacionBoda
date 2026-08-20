@@ -125,33 +125,63 @@
     </section>
 
     <!-- Dónde & Cuándo -->
-    <section class="py-24 px-4 max-w-5xl mx-auto">
+    <section class="py-24 px-4 max-w-6xl mx-auto">
         <h2 class="font-handwriting text-center text-5xl md:text-6xl text-[#6c765d] mb-16" data-aos="fade-up">Dónde & Cuándo</h2>
-        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 p-10 md:p-16 text-center space-y-8" data-aos="zoom-in">
-            <div class="flex justify-center gap-6 text-[#ccaa7a]">
-                <i class="fas fa-church text-5xl"></i>
-                <div class="w-px h-12 bg-gray-200"></div>
-                <i class="fas fa- champagne-glasses text-5xl text-[#ccaa7a]"></i>
-                <i class="fas fa-glass-cheers text-5xl"></i>
-            </div>
-            
-            <div class="space-y-4">
-                <h3 class="font-serif text-3xl font-bold text-[#6c765d]">Ceremonia y Recepción</h3>
-                <div class="space-y-2">
-                    <p class="text-[#ba6931] font-bold uppercase tracking-widest text-xs">Horarios</p>
-                    <p class="text-lg">Ceremonia Religiosa: <span class="font-bold text-[#6c765d]">3:30 PM</span></p>
-                    <p class="text-lg">Recepción y Fiesta: <span class="font-bold text-[#6c765d]">5:30 PM</span></p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Tarjeta Ceremonia Religiosa -->
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 p-8 md:p-12 text-center flex flex-col justify-between space-y-6" data-aos="fade-right">
+                <div class="space-y-6">
+                    <div class="w-20 h-20 bg-[#FAF9F6] border border-[#ccaa7a] rounded-full flex items-center justify-center mx-auto text-[#ccaa7a]">
+                        <i class="fas fa-church text-4xl"></i>
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="font-serif text-3xl font-bold text-[#6c765d]">Ceremonia Religiosa</h3>
+                        <div class="space-y-1">
+                            <p class="text-[#ba6931] font-bold uppercase tracking-widest text-xs">Horario</p>
+                            <p class="text-lg font-bold text-[#6c765d]">3:30 PM</p>
+                        </div>
+                        <div class="pt-2 space-y-1">
+                            <p class="text-[#ba6931] font-bold uppercase tracking-widest text-xs">Lugar</p>
+                            <p class="text-xl font-serif italic text-[#6c765d]">Catedral Nuestra Señora de las Nieves</p>
+                            <p class="text-gray-500">Cra. 2 #8-56, Vélez, Santander</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="pt-4 space-y-2">
-                    <p class="text-[#ba6931] font-bold uppercase tracking-widest text-xs">Lugar</p>
-                    <p class="text-xl font-serif italic text-[#6c765d]">Hotel Pringamosa</p>
-                    <p class="text-gray-500">Cl. 9 #3-2, Vélez, Santander</p>
+
+                <div class="pt-4">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Catedral+Nuestra+Se%C3%B1ora+de+las+Nieves+Velez+Santander&query_place_id=ChIJpTFd9mvwQY4RMOUb9DhZ2-Y" target="_blank" class="inline-flex items-center justify-center gap-3 btn-olive px-8 py-3.5 font-bold shadow-xl w-full sm:w-auto">
+                        <i class="fas fa-map-marker-alt"></i> Cómo llegar
+                    </a>
                 </div>
             </div>
 
-            <a href="https://maps.app.goo.gl/45swpbQeEimX3Jhc9" target="_blank" class="inline-flex items-center gap-3 btn-olive px-10 py-4 font-bold shadow-xl">
-                <i class="fas fa-map-marker-alt"></i> Cómo llegar
-            </a>
+            <!-- Tarjeta Recepción y Fiesta -->
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 p-8 md:p-12 text-center flex flex-col justify-between space-y-6" data-aos="fade-left">
+                <div class="space-y-6">
+                    <div class="w-20 h-20 bg-[#FAF9F6] border border-[#ccaa7a] rounded-full flex items-center justify-center mx-auto text-[#ccaa7a]">
+                        <i class="fas fa-glass-cheers text-4xl"></i>
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="font-serif text-3xl font-bold text-[#6c765d]">Recepción y Fiesta</h3>
+                        <div class="space-y-1">
+                            <p class="text-[#ba6931] font-bold uppercase tracking-widest text-xs">Horario</p>
+                            <p class="text-lg font-bold text-[#6c765d]">5:30 PM</p>
+                        </div>
+                        <div class="pt-2 space-y-1">
+                            <p class="text-[#ba6931] font-bold uppercase tracking-widest text-xs">Lugar</p>
+                            <p class="text-xl font-serif italic text-[#6c765d]">Hotel Pringamosa</p>
+                            <p class="text-gray-500">Cl. 9 #3-2, Vélez, Santander</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    <a href="https://maps.app.goo.gl/45swpbQeEimX3Jhc9" target="_blank" class="inline-flex items-center justify-center gap-3 btn-olive px-8 py-3.5 font-bold shadow-xl w-full sm:w-auto">
+                        <i class="fas fa-map-marker-alt"></i> Cómo llegar
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
